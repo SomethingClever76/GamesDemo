@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tic-Tac-Toe</title>
+
+    <link rel="stylesheet" type="text/css" href="tictactoe.css">
+</head>
+
+<body>
+    <a href="../index/index.html">Back to homepage</a> <br /> <br />
+    <div id="clear">
+        <div id="onstart" onclick=playerStart()>
+            Decide who will be X and who will be O. <br />
+            Click <b>here</b> to see who goes first! <br />
+        </div>
+        <div id="playerturn"></div>
+        <div id="winner"></div>
+        <br />
+        <div class="row">
+            <div id="0_0" onclick="place(this)"></div>
+            <div id="1_0" onclick="place(this)"></div>
+            <div id="2_0" onclick="place(this)"></div>
+        </div>
+        <div class="row">
+            <div id="0_1" onclick="place(this)"></div>
+            <div id="1_1" onclick="place(this)"></div>
+            <div id="2_1" onclick="place(this)"></div>
+        </div>
+        <div class="row">
+            <div id="0_2" onclick="place(this)"></div>
+            <div id="1_2" onclick="place(this)"></div>
+            <div id="2_2" onclick="place(this)"></div>
+        </div>
+    </div>
+
+    <script src="tictactoeVersion3.js"></script>
+</body>
+
+</html>
