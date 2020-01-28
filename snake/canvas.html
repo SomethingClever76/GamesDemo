@@ -14,51 +14,127 @@
     <canvas id="canvas" width="450" height="450"></canvas> <br />
     <input type="button" onclick="draw()" value="Draw" /> <br />
     <input type="button" onclick="remove()" value="Clear" /> <br />
-    <!-- <br />
-    <br />
-    <br />
-    <p>Click the button to see the array values after the split.</p>
-    <button onclick="splitString()">Try it!</button>
-    <p id="answer"></p> -->
 
     <script>
-        let canvas = document.getElementById("canvas");
-        let ctx = canvas.getContext("2d");
-        let board = [
-            "###############",
-            "#             #",
-            "#             #",
-            "#             #",
-            "#    ####     #",
-            "#    ####     #",
-            "#             #",
-            "#             #",
-            "#             #",
-            "###############"
-        ];
-        function draw() {
-            ctx.fillStyle = "blue";
-            ctx.fillRect(0, 0, 30, 30);
+        // let canvas = document.getElementById("canvas");
+        // let ctx = canvas.getContext("2d");
+        // let board = [
+        //     "###############",
+        //     "#             #",
+        //     "#             #",
+        //     "#             #",
+        //     "#    ####     #",
+        //     "#    ####     #",
+        //     "#             #",
+        //     "#             #",
+        //     "#             #",
+        //     "###############"
+        // ];
+        // function draw() {
+        //     ctx.fillStyle = "blue";
+        //     ctx.fillRect(0, 0, 30, 30);
+        // }
+
+        // function remove() {
+        //     ctx.clearRect(0, 0, 300, 300);
+        // }
+
+        // let currentYoffset = 0;
+        // let squareSize = 30;
+        // board.forEach(function checkLine(line) {
+        //     line = line.split('');
+        //     let currentXoffset = 0;
+        //     line.forEach(function checkCharacter(character) {
+        //         if (character === '#') {
+        //             ctx.fillStyle = "black";
+        //             ctx.fillRect(currentXoffset, currentYoffset, squareSize, squareSize);
+        //         }
+        //         currentXoffset += squareSize;
+        //     });
+        //     currentYoffset += squareSize;
+        // });
+
+        let game = {
+            board: [
+                "###############",
+                "#             #",
+                "#             #",
+                "#             #",
+                "#    ####     #",
+                "#    ####     #",
+                "#             #",
+                "#             #",
+                "#             #",
+                "###############"
+            ]
         }
 
-        function remove() {
-            ctx.clearRect(0, 0, 300, 300);
+        let graphics = {
+            canvas: document.getElementById("canvas"),
+            squareSize: 30,
+            drawBoard: function () {
+                let ctx = graphics.canvas.getContext("2d");
+                let currentYoffset = 0;
+
+                game.board.forEach(function checkLine(line) {
+                    line = line.split('');
+                    let currentXoffset = 0;
+                    line.forEach(function checkCharacter(character) {
+                        if (character === '#') {
+                            ctx.fillStyle = "black";
+                            ctx.fillRect(currentXoffset, currentYoffset, graphics.squareSize, graphics.squareSize);
+                        }
+                        currentXoffset += graphics.squareSize;
+                    });
+                    currentYoffset += graphics.squareSize;
+                });
+            }
         }
 
-        let currentYoffset = 0;
-        let squareSize = 30;
-        board.forEach(function checkLine(line) {
-            line = line.split('');
-            let currentXoffset = 0;
-            line.forEach(function checkCharacter(character) {
-                if (character === '#') {
-                    ctx.fillStyle = "black";
-                    ctx.fillRect(currentXoffset, currentYoffset, squareSize, squareSize);
-                }
-                currentXoffset += squareSize;
-            });
-            currentYoffset += squareSize;
-        });
+        graphics.drawBoard();
+
+        let snake = {
+            parts: [
+                // head
+                { x: 4, y: 2 },
+                // middle
+                { x: 3, y: 2 },
+                // tail
+                { x: 2, y: 2 }
+            ],
+            // direction property
+            facing: "E",
+            // function to render the snake
+            drawSnake: function () {
+                let ctx = graphics.canvas.getContext("2d");
+                snake.parts.forEach(function drawPart(part) {
+                    let partXlocation = part.x * graphics.squareSize;
+                    let partYlocation = part.y * graphics.squareSize;
+                    ctx.fillStyle = "green";
+                    ctx.fillRect(partXlocation, partYlocation, graphics.squareSize, graphics.squareSize);
+                });
+            }
+        };
+
+        snake.drawSnake();
+
+        // let person = {
+        //     firstName: "Russel",
+        //     lastName: "Eich",
+        //     nickname: "Rusty",
+        //     sayHello: function Hello() {
+        //         alert(person.nickname + " " + person.lastName);
+        //     }
+        // };
+
+        // person.sayHello();
+
+        // < br />
+        // <br />
+        // <br />
+        // <p>Click the button to see the array values after the split.</p>
+        // <button onclick="splitString()">Try it!</button>
+        // <p id="answer"></p>
 
         // let luckyCatClub = ["Rusty", "Grace", "Markus", "Ruby", "Kyle", "Dominic"];
         // luckyCatClub.forEach(function sayName(name) {
