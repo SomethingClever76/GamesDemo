@@ -1,0 +1,5 @@
+/* Seems that the canvas doesn't draw the board unless the width and height are established inline? */
+/* #canvas {
+    width: 1024;
+    height: 1024;
+} */

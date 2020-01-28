@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+</head>
+
+<body>
+    <!-- had to change width and height values because it wasn't displaying full board at 300x300
+    if each square is 30 wide and each # represents one square, 15 # times 30 width = 450 total width -->
+    <canvas id="canvas" width="450" height="450"></canvas> <br />
+    <input type="button" onclick="draw()" value="Draw" /> <br />
+    <input type="button" onclick="remove()" value="Clear" /> <br />
+    <!-- <br />
+    <br />
+    <br />
+    <p>Click the button to see the array values after the split.</p>
+    <button onclick="splitString()">Try it!</button>
+    <p id="answer"></p> -->
+
+    <script>
+        let canvas = document.getElementById("canvas");
+        let ctx = canvas.getContext("2d");
+        let board = [
+            "###############",
+            "#             #",
+            "#             #",
+            "#             #",
+            "#    ####     #",
+            "#    ####     #",
+            "#             #",
+            "#             #",
+            "#             #",
+            "###############"
+        ];
+        function draw() {
+            ctx.fillStyle = "blue";
+            ctx.fillRect(0, 0, 30, 30);
+        }
+
+        function remove() {
+            ctx.clearRect(0, 0, 300, 300);
+        }
+
+        let currentYoffset = 0;
+        let squareSize = 30;
+        board.forEach(function checkLine(line) {
+            line = line.split('');
+            let currentXoffset = 0;
+            line.forEach(function checkCharacter(character) {
+                if (character === '#') {
+                    ctx.fillStyle = "black";
+                    ctx.fillRect(currentXoffset, currentYoffset, squareSize, squareSize);
+                }
+                currentXoffset += squareSize;
+            });
+            currentYoffset += squareSize;
+        });
+
+        // let luckyCatClub = ["Rusty", "Grace", "Markus", "Ruby", "Kyle", "Dominic"];
+        // luckyCatClub.forEach(function sayName(name) {
+        //     alert(name);
+        // });
+
+        // function splitString() {
+        //     let string = "Lucky Cat Club";
+        //     //separate by each character (including spaces)
+        //     let value = string.split('');
+        //     // //separate at each space
+        //     // let value = string.split(' ');
+        //     // //separate by each instance of c or C (case insensitive)
+        //     // let value = string.split(/c/i);
+        //     document.getElementById("answer").innerHTML = value;
+        // }
+
+    </script>
+</body>
+
+</html>
